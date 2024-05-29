@@ -4,7 +4,7 @@
 # This workflow uses actions that are not certified by GitHub.
 # They are provided by a third-party and are governed by
 # separate terms of service, privacy policy, and support
-# documentation..
+# documentation.
 
 name: Java CI with Maven
 
@@ -55,8 +55,5 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build and Push Docker Image
-        run: |
-          IMAGE_NAME=${{ secrets.DOCKERHUB_USERNAME }}/${{ env.SERVICE }}
-          docker build -t $IMAGE_NAME:latest
-          docker push $IMAGE_NAME:latest
+      - name: Build and Push Docker Image with Jib
+        run: mvn compile jib:build -Dimage=${{ secrets.DOCKERHUB_USERNAME }}/${{ env.SERVICE }}:latest
