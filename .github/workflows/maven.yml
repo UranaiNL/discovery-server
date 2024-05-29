@@ -36,6 +36,7 @@ jobs:
 
   push:
     runs-on: ubuntu-latest
+    needs: build
     env:
       SERVICE: discovery-server
     steps:
@@ -57,3 +58,4 @@ jobs:
 
       - name: Build and Push Docker Image with Jib
         run: mvn compile jib:build -Dimage=${{ secrets.DOCKERHUB_USERNAME }}/${{ env.SERVICE }}:latest
+
