@@ -69,8 +69,8 @@ jobs:
         id: set-context
         uses: azure/aks-set-context@v3
         with:
-          resource-group: `${{ secrets.AKS_RESOURCE_GROUP }}`
-          cluster-name: `${{ secrets.AKS_CLUSTER_NAME }}`
+          resource-group: ${{ secrets.AKS_RESOURCE_GROUP }}
+          cluster-name: ${{ secrets.AKS_CLUSTER_NAME }}
 
       - name: Set up Kubectl
         id: install-kubectl
